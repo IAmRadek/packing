@@ -38,6 +38,10 @@ run: env-check
 	@echo "Running with $(ENV_FILE)..."
 	@go run ./$(MAIN_DIR)
 
+tests:
+	@echo "Running tests"
+	@go test ./... -v
+
 # Helper target to show current env variables
 env:
 	@echo "Environment variables from $(ENV_FILE):"

@@ -43,6 +43,14 @@ https://packing.fly.dev
    GRACEFUL_SHUTDOWN_DURATION=5s
    ```
 
+### Testing the Application
+
+Using Make:
+
+```
+make tests
+```
+
 ### Running the Application
 
 Using Make:
