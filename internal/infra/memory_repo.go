@@ -43,10 +43,6 @@ func (m *MemoryRepo) Save(ctx context.Context, inv *pack.Inventory) error {
 	m.rw.Lock()
 	defer m.rw.Unlock()
 
-	if _, ok := m.m[inv.SKU()]; ok {
-		return fmt.Errorf("inventory already exists for sku: %s", inv.SKU())
-	}
-
 	m.m[inv.SKU()] = inv
 	return nil
 }
