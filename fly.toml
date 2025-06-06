@@ -1,0 +1,33 @@
+# fly.toml app configuration file generated for packing on 2025-06-06T09:23:22+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'packing'
+primary_region = 'waw'
+
+[build]
+[build.args]
+GO_VERSION = '1.24'
+
+[env]
+ADDR = ':8080'
+READ_TIMEOUT = '10s'
+READ_HEADER_TIMEOUT = '10s'
+WRITE_TIMEOUT = '10s'
+IDLE_TIMEOUT = '10s'
+GRACEFUL_TIMEOUT = '10s'
+
+
+[http_service]
+internal_port = 8080
+force_https = true
+auto_stop_machines = 'stop'
+auto_start_machines = true
+min_machines_running = 0
+processes = ['app']
+
+[[vm]]
+memory = '1gb'
+cpu_kind = 'shared'
+cpus = 1

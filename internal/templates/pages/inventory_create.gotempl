@@ -1,0 +1,54 @@
+{{ define "content" }}
+    <section class="m-5">
+        <form method="POST" class="max-w-xl mx-auto bg-white p-6 rounded shadow space-y-4">
+            <div id="error" class="text-red-600 text-sm font-medium">{{.Error}}</div>
+
+            <div>
+                <label class="block text-sm font-medium mb-1">Name</label>
+                <input type="text" name="name" class="w-full px-3 py-2 border rounded shadow-sm"/>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium mb-2">Packs</label>
+                <div id="packs"></div>
+                <button id="add-pack" type="button"
+                        class="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Add Pack
+                </button>
+            </div>
+
+            <div>
+                <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <script defer>
+        document.addEventListener("DOMContentLoaded", () => {
+            const packsContainer = document.getElementById("packs");
+            const addBtn = document.getElementById("add-pack");
+
+            addBtn.addEventListener("click", () => {
+                const div = document.createElement("div");
+                div.className = "flex gap-2 mb-2 items-end";
+                div.innerHTML = `
+          <div class="flex-1">
+            <label class="block text-sm mb-1">Pack Name</label>
+            <input type="text" name="pack_name[]" class="w-full px-3 py-2 border rounded" />
+          </div>
+          <div class="w-24">
+            <label class="block text-sm mb-1">Quantity</label>
+            <input type="number" name="pack_quantity[]" value="1" min="1" class="w-full px-3 py-2 border rounded" />
+          </div>
+          <button type="button" class="text-red-600 text-sm hover:underline remove-pack">Remove</button>
+        `;
+                packsContainer.appendChild(div);
+
+                div.querySelector(".remove-pack").addEventListener("click", () => {
+                    div.remove();
+                });
+            });
+        });
+    </script>
+{{ end }}
